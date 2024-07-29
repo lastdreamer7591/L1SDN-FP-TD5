@@ -7,7 +7,7 @@ def shaker_2021_exo_1(c1, c2):
     :param c2: (int)
     :return: (int) la couleur moyenne
     """
-    pass
+    return ceil((c1 + c2) / 2)
 
 # Exercice 2 - Le Shaker (2021) - Gros tas de bouquins
 
@@ -34,7 +34,20 @@ def shaker_2021_exo_2(TF, TP, TA, livres):
     :param TA: (int) Temps pour le jury Autre
     :param livre: (list) Liste des livres
     :return: (bool) True si le jury a le temps de lire tous les livres, False sinon"""
-    pass
+    for livre in livres:
+        if livre[0] == "F":
+            TF -= livre[1]
+            if TF < 0:
+                return False
+        elif livre[0] == "P":
+            TP -= livre[1]
+            if TP < 0:
+                return False
+        else:
+            TA -= livre[1]
+            if TA < 0:
+                return False
+    return True
 
 # Exercice 3 - Orange (2021) - La ferme familiale
 
@@ -44,7 +57,10 @@ def entrelacement(mot_1, mot_2):
     :param mot_2: (str)
     :return: (str) l'entrelacement des chaînes <mot_1> et <mot_2>
     """
-    pass
+    nv_mot = ""
+    for i in range(len(mot_1)):
+        nv_mot += mot_1[i] + mot_2[i]
+    return nv_mot
 
 # Exercice 4 - Orange (2021) - Pré carré
 
@@ -53,7 +69,10 @@ def longueur_haie(parcelles):
     :param parcelles: (list)
     :return: (int) la longueur totale de haie à planter pour délimiter les parcelles.
     """
-    pass
+    total = 2 * sum(parcelles) + parcelles[0] + parcelles[-1]
+    for i in range(1, len(parcelles)):
+        total += max(parcelles[i], parcelles[i-1])
+    return total
 
 # Exercice 5 - Battle Dev (2021) - Décollage !
 
@@ -61,5 +80,12 @@ def decollage(boutons):
     """Retourne l'élément qui apparait EXACTEMENT 2 fois dans la liste
     :param boutons: (list)
     :return: (str) l'élément qui apparait EXACTEMENT 2 fois dans la liste"""
-    pass
+    for i in range(len(boutons)):
+        cpt = 1
+        for j in range(0, len(boutons)):
+            if boutons[i] == boutons[j] and j != i:
+                cpt += 1
+        if cpt == 2:
+            return boutons[i]
+    return None
 
